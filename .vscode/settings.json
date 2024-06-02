@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "uart.h": "c",
+        "pio_7seg.h": "c"
+    }
+    // "workbench.editorAssociations": {
+    //     "*.overlay": "devicetree.editor",
+    //     "*.dts": "devicetree.editor"
+    //    },
+}
