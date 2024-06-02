@@ -1,14 +1,7 @@
-.program hello
 
-loop:
-    pull
-    out pins, 1
-    jmp loop
-
-
-
-% c-sdk {
-
+#include<hardware/pio.h>
+#include<hardware/clocks.h>
+#include<7seg.pio.h>
 
 static inline void hello_program_init(PIO pio,int sm ,int offset,uint pin)
 {
@@ -24,6 +17,3 @@ static inline void hello_program_init(PIO pio,int sm ,int offset,uint pin)
 // Set the state machine running
     pio_sm_set_enabled(pio, sm, true);
 }
-
-
-%}

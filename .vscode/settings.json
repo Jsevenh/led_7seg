@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "uart.h": "c",
-        "pio_7seg.h": "c"
+        "pio_7seg.h": "c",
+        "address_mapped.h": "c"
     }
     // "workbench.editorAssociations": {
     //     "*.overlay": "devicetree.editor",

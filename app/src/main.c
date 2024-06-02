@@ -2,13 +2,23 @@
 #include<zephyr/drivers/gpio.h>
 #include<zephyr/drivers/uart.h>
 #include"../include/z7seg.h"
+#include<zephyr/device.h>
+
+#include<zephyr/drivers/misc/pio_rpi_pico/pio_rpi_pico.h>
+#include<hardware/pio.h>
+#include"7seg.pio.h"
 
 const struct gpio_dt_spec led= GPIO_DT_SPEC_GET(DT_ALIAS(led0),gpios);
 
 
+const struct device *const seg_pio=DEVICE_DT_GET(DT_ALIAS(piodt));
 int  main()
 {
-
+    if(!device_is_ready(seg_pio))
+    {
+        return 1;
+    }
+  
     if(!gpio_is_ready_dt(&led))
     {
         return 0;

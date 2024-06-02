@@ -36,4 +36,12 @@
         };
 
     };
+    aliases
+    {
+        piodt=&pio0;
+    };
+};
+&pio0 
+{
+    status="okay";
 };

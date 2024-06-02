@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.29.2)
-set(BOARD rpi_pico)
 
-
+include_directories(/home/mbayi/pico/pico-sdk/src/rp2_common/hardware_pio/include/hardware)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+add_subdirectory(pio)
 project(led_7seg)
 
-target_sources(app PRIVATE src/main.c  src/z7seg.c)
+target_sources(app PRIVATE src/main.c  src/z7seg.c )
