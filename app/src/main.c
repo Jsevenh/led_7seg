@@ -5,47 +5,31 @@
 #include<zephyr/device.h>
 
 #include<zephyr/drivers/misc/pio_rpi_pico/pio_rpi_pico.h>
-#include<hardware/pio.h>
+
 #include"7seg.pio.h"
 
 const struct gpio_dt_spec led= GPIO_DT_SPEC_GET(DT_ALIAS(led0),gpios);
-
-
 const struct device *const seg_pio=DEVICE_DT_GET(DT_ALIAS(piodt));
+
+void exec_pio()
+{
+    PIO pio=pio_rpi_pico_get_pio(seg_pio);
+    uint offset=pio_add_program(pio,&hello_program);
+    uint sm=pio_claim_unused_sm(pio,true);
+
+    hello_program_init(pio,sm,offset,25);
+    while(true)
+    {
+        pio_sm_put_blocking(pio,sm,1);
+        k_msleep(500);
+        pio_sm_put_blocking(pio,sm,0);
+        k_msleep(500);
+    }
+}
+
 int  main()
 {
-    if(!device_is_ready(seg_pio))
-    {
-        return 1;
-    }
-  
-    if(!gpio_is_ready_dt(&led))
-    {
-        return 0;
-       
-    }
-    gpio_pin_configure_dt(&led,GPIO_OUTPUT_LOW);
-    
-   struct z7seg led_7seg;
-
-    init_7seg(&led_7seg);
-    int ret=init_gpios();
-    if(ret==0)
-    {
-        return 0;
-    }
-    gpio_pin_set_dt(&led,ret);
-    while (true)
-    {
-        // loop through all the 10 elements in the array
-
-        for(int i=0;i<=sizeof(led_7seg.binary_codes)/sizeof(int);i++)
-    {
-        led_7seg.curr_value=i;
-        shift(&led_7seg);
-        k_msleep(1000);
-    }
-    }
+    exec_pio();
     
     return 0;
 }

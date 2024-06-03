@@ -19,9 +19,8 @@ add_custom_command(
  pico_sdk_init()
  pico_generate_pio_header(app ${PIO_FILE})
 
-
-
 ## alternate implementation
+
 # find and build pioasm 
 
 # include(${PICO_SDK_PATH}/tools/FindPioasm.cmake)

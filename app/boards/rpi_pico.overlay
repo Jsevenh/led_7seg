@@ -44,4 +44,16 @@
 &pio0 
 {
     status="okay";
+
+};
+&pinctrl
+{
+    pio_default:pio_blink
+    {
+        group1
+        {
+            pinmux=<PIO0_P25>;
+        };
+
+    };
 };

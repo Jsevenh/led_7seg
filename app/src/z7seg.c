@@ -1,6 +1,6 @@
 #include "../include/z7seg.h"
 #include <zephyr/drivers/gpio.h>
-
+#include<7seg.pio.h>
 
 const struct gpio_dt_spec oe = GPIO_DT_SPEC_GET(DT_NODELABEL(oe), gpios);
 const struct gpio_dt_spec rclk = GPIO_DT_SPEC_GET(DT_NODELABEL(rclk), gpios);

@@ -1,29 +1,20 @@
-.program hello
+.program 7seg
 
-loop:
-    pull
-    out pins, 1
-    jmp loop
+.side_set 2 opt
 
+;auto pull is enabled with a threshold of 8bits 
+; the shiftregister clock(SRCLK) and the storage clock (RCLK) will be the sideset pins
+; the set pin will be the
+; output enable (~OE) and shift register clr(SRCLR) will be the set pins
+; a clock frequency of 5 Mhz will do refer to the data sheet
+.wrap_target
 
+set pins,1 ; set output OE to 0 and SRCLR to 1 i.e 0b01
+set x,8
+shift_data:
+    out pins,1 side 0 ; stall if data is not available 
+    jmp x-- shift_data side 1
 
-% c-sdk {
-
-
-static inline void hello_program_init(PIO pio,int sm ,int offset,uint pin)
-{
-     pio_sm_config c = hello_program_get_default_config(offset);
-
-     sm_config_set_out_pins(&c, pin, 1);
-     // Set this pin's GPIO function (connect PIO to the pad)
-    pio_gpio_init(pio, pin);
-// Set the pin direction to output at the PIO
-    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
-// Load our configuration, and jump to the start of the program
-    pio_sm_init(pio, sm, offset, &c);
-// Set the state machine running
-    pio_sm_set_enabled(pio, sm, true);
-}
-
-
-%}
+set pins,3 [2] ; set both pins to 1 and delay for 2 cycles i.e 0b11
+set pins ,0 ; set  both pins to low 
+.wrap

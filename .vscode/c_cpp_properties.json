@@ -3,7 +3,12 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**","/home/mbayi/Documents/zephyr/LED_7SEG/app/include/**"
+                "${workspaceFolder}/**",
+                "/home/mbayi/Documents/zephyr/LED_7SEG/app/include/**",
+                "/home/mbayi/pico/pico-sdk/src/rp2_common/**",
+                "/home/mbayi/zephyrproject/modules/hal/rpi_pico/src/rp2_common/hardware_clocks/include",
+                "/home/mbayi/pico/pico-sdk/src/boards/include/**",
+                "/home/mbayi/pico/pico-sdk/src/common/pico_base/include/**"
             ],
             "defines": [],
             "compilerPath": "/home/mbayi/zephyr-sdk-0.16.5-1/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
