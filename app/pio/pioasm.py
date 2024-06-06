@@ -19,9 +19,8 @@ def process_files(input_pio,input_c):
         
         with open(input_c,'r') as c_file:
             for line in c_file:
-               
-                # do not include #include statements 
-                if not line.startswith('#') and '#' not in line:
+                # # do not include #include statements 
+                # if not line.startswith('#') and '#' not in line:
                     pio_file.write(line)
         pio_file.write("\n%}\n")
     

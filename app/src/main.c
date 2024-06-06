@@ -11,25 +11,30 @@
 const struct gpio_dt_spec led= GPIO_DT_SPEC_GET(DT_ALIAS(led0),gpios);
 const struct device *const seg_pio=DEVICE_DT_GET(DT_ALIAS(piodt));
 
-void exec_pio()
+void exec_pio(struct z7seg *seg)
 {
     PIO pio=pio_rpi_pico_get_pio(seg_pio);
-    uint offset=pio_add_program(pio,&hello_program);
+    uint offset=pio_add_program(pio,&seg7_program);
     uint sm=pio_claim_unused_sm(pio,true);
 
-    hello_program_init(pio,sm,offset,25);
+    seg7_program_init(pio,sm,offset,1000000,3,0,2);
     while(true)
     {
-        pio_sm_put_blocking(pio,sm,1);
-        k_msleep(500);
-        pio_sm_put_blocking(pio,sm,0);
-        k_msleep(500);
+         k_msleep(5);
+        pio_sm_put_blocking(pio,sm,seg->binary_codes[seg->curr_value]);
+        k_msleep(5);
+        seg->curr_value=(seg->curr_value+1)%10;
     }
 }
 
 int  main()
 {
-    exec_pio();
+    if(!device_is_ready(seg_pio))
+    {
+        return 1;
+    }
+    struct z7seg led_seg;
+    exec_pio(&led_seg);
     
     return 0;
 }

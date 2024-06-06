@@ -5,7 +5,8 @@
         "address_mapped.h": "c",
         "pio.h": "c",
         "pio_rpi_pico.h": "c",
-        "7seg.pio.h": "c"
+        "7seg.pio.h": "c",
+        "clocks.h": "c"
     }
     // "workbench.editorAssociations": {
     //     "*.overlay": "devicetree.editor",
