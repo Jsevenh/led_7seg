@@ -62,8 +62,23 @@ void init_7seg(struct z7seg *this)
     // the code  for each number exists in  an equivalent index in the array
     // eg code of 0 is stored at index 0 and 9 at index 9
     // the codes assume a common cathode  configuration of the leds
-    int arr[10] = {0b0111111, 0b0000110, 0b1011011, 0b1001111,
-                       0b1100110, 0b1101101, 0b1111101, 0b0000111, 0b1111111, 0b1101111};
+    // here A is the LSB while G is the MSB
+    // int arr[10] = {0b0111111, 0b0000110, 0b1011011, 0b1001111,
+    //                    0b1100110, 0b1101101, 0b1111101, 0b0000111, 0b1111111, 0b1101111};
+
+    // here A is the MSB while G is the LSB
+    int arr[10] = {
+        0b1111110,
+        0b0110000,
+        0b1101101,
+        0b1111001,
+        0b0110011,
+        0b1011011,
+        0b1011111,
+        0b1110000,
+        0b1111111,
+        0b1111011
+    };
 
     // store the binary codes in the struct
     for (int i = 0; i < sizeof(arr) / sizeof(int); ++i)
