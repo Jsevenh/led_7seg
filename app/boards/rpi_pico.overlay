@@ -7,31 +7,31 @@
         // output enable pin 
         oe:oe_pin
         {
-            gpios=<&gpio0 0 GPIO_ACTIVE_HIGH>;
+            gpios=<&gpio0 2 GPIO_ACTIVE_HIGH>;
             label="OE";
         };
         // storage register clock 
         rclk:rclk_pin
         {
-            gpios=<&gpio0 3 GPIO_ACTIVE_HIGH>;
+            gpios=<&gpio0 5 GPIO_ACTIVE_HIGH>;
             label="RCLK";
         };
         //  shift register clock
         srclk:srclk_pin
         {
-            gpios=<&gpio0 4 GPIO_ACTIVE_HIGH>;
+            gpios=<&gpio0 6 GPIO_ACTIVE_HIGH>;
             label="SRCLK";
         };
         // serial input pin
         ser:ser_pin
         {
-            gpios=<&gpio0 2 GPIO_ACTIVE_HIGH>;
+            gpios=<&gpio0 4 GPIO_ACTIVE_HIGH>;
             label="SER";
         };
         // shift register clear pin
         srclr:srclr_pin
         {
-            gpios=<&gpio0 1 GPIO_ACTIVE_HIGH>;
+            gpios=<&gpio0 3 GPIO_ACTIVE_HIGH>;
             label="SRCLR";
         };
 

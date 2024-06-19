@@ -33,7 +33,7 @@ int  main()
     {
         led_7seg.curr_value=i;
         shift(&led_7seg);
-        k_msleep(1000);
+        k_msleep(500);
     }
     }
     
