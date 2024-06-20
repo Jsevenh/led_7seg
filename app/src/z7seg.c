@@ -82,9 +82,10 @@ void shift(struct z7seg *this)
     gpio_pin_set_dt(&srclk, 0);
     k_msleep(1);
     gpio_pin_set_dt(&srclr, 1);
-    for (int i = 7; i >= 0; --i)
+
+    for (int k = 7; k >= 0; --k)
     { // get a single bit ,bit i
-       int biti = ((1 << i) & this->binary_codes[this->curr_value]) >> i;
+       int biti = ((1 << k) & this->binary_codes[this->curr_value]) >> k;
         // set shift register clock to high
         gpio_pin_set_dt(&srclk, 0);
         // set data value

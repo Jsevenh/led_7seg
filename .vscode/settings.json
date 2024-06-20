@@ -3,6 +3,7 @@
         "uart.h": "c",
         "pio_7seg.h": "c"
     },
+    "ros.distro": "humble",
     // "workbench.editorAssociations": {
     //     "*.overlay": "devicetree.editor",
     //     "*.dts": "devicetree.editor"
